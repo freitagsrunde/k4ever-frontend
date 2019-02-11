@@ -1,4 +1,5 @@
 # k4frontend
+A frontend for k4ever-backend
 
 ## Project setup
 ```

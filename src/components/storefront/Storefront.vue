@@ -1,7 +1,8 @@
 <template>
     <div class="storepage">
-        <pre v-text="$attrs"/>
-        <last-bought-items></last-bought-items>
+        <!--<pre v-text="$attrs"/>-->
+        <h1>Storefront</h1  >
+        <!--<last-bought-items></last-bought-items>-->
         <most-bought-items></most-bought-items>
     </div>
 </template>

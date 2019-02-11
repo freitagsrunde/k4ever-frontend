@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div class="no-auth">
+        <h1>You are not allowed to view this page.</h1>
+    </div>
 </template>
 
 <script>
@@ -8,6 +10,6 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>

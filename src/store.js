@@ -6,6 +6,15 @@ import axios from "axios";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+    state: {
+        status: '',
+        token: localStorage.getItem('token') || '',
+        user: {}
+    },
+    getters: {
+        isLoggedIn: (state) => !!state.token,
+        authStatus: (state) => state.status
+    },
     mutations: {
         auth_request(state) {
             state.status = 'loading';
@@ -28,8 +37,8 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 commit('auth_request');
                 axios({
-                    url: 'http://localhost:8080/api/v1/login',
-                    data: {name: user.username, password: user.password},
+                    url: 'http://localhost:8080/api/v1/login/',
+                    data: user,
                     method: 'POST'
                 })
                     .then(resp => {
@@ -55,14 +64,5 @@ export default new Vuex.Store({
                 resolve()
             })
         }
-    },
-    state: {
-        status: '',
-        token: localStorage.getItem('token') || '',
-        user: {}
-    },
-    getters: {
-        isLoggedIn: (state) => !!state.token,
-        authStatus: (state) => state.status
     }
 });

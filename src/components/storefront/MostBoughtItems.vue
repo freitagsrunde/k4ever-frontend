@@ -3,7 +3,7 @@
         <!--<pre v-text="$attrs"/>-->
         <h2>Most bought Items</h2>
         <Product v-for="product in products"
-                 v-bind:key="product.id"
+                 v-bind:key="product.ID"
                  v-bind="product"></Product>
     </div>
 </template>
@@ -22,11 +22,9 @@
             }
         },
         mounted() {
-            this.products = [
-                {id: 1, ean: "123", name: "Fritz Limo", price: 0.8, deposit: 0.2},
-                {id: 2, ean: "456", name: "Fritz Cola", price: 0.8, deposit: 0.2},
-                {id: 3, ean: "789", name: "Fritz Rhabarber", price: 0.9, deposit: 0.2},
-            ]
+            this.$http.get('http://localhost:8080/api/v1/products/')
+                .then(res => this.products = res.data.Products)
+                .catch(console.error)
         }
     };
 </script>
