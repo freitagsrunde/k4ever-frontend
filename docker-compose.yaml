@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  k4frontend:
+    build: ./
+    environment:
+      VUE_APP_API_BASE_URL: http://0.0.0.0:8080/api/v1/
+    ports:
+      - "3000:80"

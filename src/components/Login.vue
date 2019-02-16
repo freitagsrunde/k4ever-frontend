@@ -1,6 +1,6 @@
 <template>
-    <div class="login">
-        <form class="login" @submit.prevent="login">
+    <div id="login">
+        <form class="loginForm" @submit.prevent="login">
             <!--<pre v-text="$attrs"/>-->
             <input required v-model="username" type="text" placeholder="username">
             <input required v-model="password" type="password" placeholder="password">
@@ -22,10 +22,11 @@
                 let name = this.username;
                 let password = this.password;
                 this.$store.dispatch('login', { name, password })
+                    .then(() => {return this.$store.dispatch('updateUser')})
                     .then(() => this.$router.push('/'))
                     .catch(err => console.log(err));
             }
-        }
+        },
     };
 </script>
 

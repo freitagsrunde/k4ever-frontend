@@ -3,7 +3,7 @@
         <!--<pre v-text="$attrs"/>-->
         <h2>Most bought Items</h2>
         <Product v-for="product in products"
-                 v-bind:key="product.ID"
+                 v-bind:key="product.id"
                  v-bind="product"></Product>
     </div>
 </template>
@@ -22,7 +22,7 @@
             }
         },
         mounted() {
-            this.$http.get('http://localhost:8080/api/v1/products/')
+            this.$http.get('/products/')
                 .then(res => this.products = res.data.Products)
                 .catch(console.error)
         }

@@ -1,22 +1,20 @@
 <template>
     <div id="app">
+        <Sidebar v-if="this.$store.getters.isLoggedIn"/>
         <router-view/>
     </div>
 </template>
 
 <script>
 
+    import Sidebar from "./components/sidebar/Sidebar";
+
     export default {
         name: 'app',
-        computed : {
-            isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
-        },
-        methods: {
-            logout: function () {
-                this.$store.dispatch('logout')
-                    .then(() => {
-                        this.$router.push('/login')
-                    })
+        components: {Sidebar},
+        computed: {
+            isLoggedIn: function () {
+                return this.$store.getters.isLoggedIn()
             }
         },
         created: function () {
@@ -28,6 +26,15 @@
                     throw err;
                 });
             });
+
+            const token = localStorage.getItem('token');
+
+            if (token) {
+                this.$store.commit('auth_success', token)
+            }
+        },
+        mounted() {
+            this.$store.dispatch('updateUser')
         }
     }
 </script>
@@ -40,5 +47,8 @@
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
+
+        display: grid;
+        grid-template-columns: 350px auto;
     }
 </style>

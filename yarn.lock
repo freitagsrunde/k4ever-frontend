@@ -3342,6 +3342,11 @@ faye-websocket@~0.11.1:
   dependencies:
     websocket-driver ">=0.5.1"
 
+fiber@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/fiber/-/fiber-1.0.4.tgz#699e9c58171d685b1a369c98d7433969133328de"
+  integrity sha1-aZ6cWBcdaFsaNpyY10M5aRMzKN4=
+
 fibers@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/fibers/-/fibers-3.1.1.tgz#0238902ca938347bd779523692fbeefdf4f688ab"

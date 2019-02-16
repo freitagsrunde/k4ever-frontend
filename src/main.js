@@ -9,10 +9,11 @@ Vue.prototype.$http = Axios;
 
 const token = localStorage.getItem('token');
 if (token) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
+  Vue.prototype.$http.defaults.baseURL = process.env.VUE_APP_API_BASE_URL
 }
 
-new Vue({
+window.App = new Vue({
   render: h => h(App),
   router,
   store,
