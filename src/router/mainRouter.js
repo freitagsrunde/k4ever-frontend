@@ -4,7 +4,7 @@ import store from "../store"
 
 import Login from '../components/Login'
 import Storefront from '../components/storefront/Storefront'
-import Settings from "../components/settings/Settings";
+import Administration from "../components/administration/Administration";
 
 Vue.use(Router);
 
@@ -23,9 +23,9 @@ let router = new Router({
                 requiresAuth: true
             }
         }, {
-            path: '/settings',
-            name: 'Settings',
-            component: Settings,
+            path: '/administration',
+            name: 'Administration',
+            component: Administration,
             meta: {
                 requiresAuth: true
             }

@@ -38,9 +38,7 @@
                         description: this.description,
                         image: this.image,
                     })
-                    .then(res => {
-                        alert(`Successfully added Product ${res.data.Product.name}`)
-                    })
+                    .then(res => this.$toasted.show(`Successfully added Product ${res.data.name}`))
                     .catch(console.error)
 
             }

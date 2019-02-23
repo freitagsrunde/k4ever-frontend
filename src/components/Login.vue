@@ -24,7 +24,7 @@
                 this.$store.dispatch('login', { name, password })
                     .then(() => {return this.$store.dispatch('updateUser')})
                     .then(() => this.$router.push('/'))
-                    .catch(err => console.log(err));
+                    .catch(err => this.$toasted.error("Login failed!", {}));
             }
         },
     };

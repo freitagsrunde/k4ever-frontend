@@ -73,13 +73,16 @@ export default new Vuex.Store({
         updateUser({commit, state}) {
             return new Promise((resolve, reject) => {
                 const user = state.user;
-                axios.get(`/users/${user.name}/`)
-                    .then(resp => {
-                        const user = resp.data;
-                        commit('update_user', user);
-                        resolve(resp);
-                    })
-                    .catch(reject)
+
+                if (user.name) {
+                    axios.get(`/users/${user.name}/`)
+                        .then(resp => {
+                            const user = resp.data;
+                            commit('update_user', user);
+                            resolve(resp);
+                        })
+                        .catch(reject)
+                }
             })
         }
     }

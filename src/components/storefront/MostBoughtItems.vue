@@ -4,12 +4,12 @@
         <h2>Most bought Items</h2>
         <Product v-for="product in products"
                  v-bind:key="product.id"
-                 v-bind="product"></Product>
+                 v-bind="product" showPurchaseBtn></Product>
     </div>
 </template>
 
 <script>
-    import Product from "./Product"
+    import Product from "../general/Product"
 
     export default {
         name: "most-bought-items",
@@ -23,7 +23,7 @@
         },
         mounted() {
             this.$http.get('/products/')
-                .then(res => this.products = res.data.Products)
+                .then(res => this.products = res.data)
                 .catch(console.error)
         }
     };

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import Product from "./Product";
+    import Product from "../general/Product";
 
     export default {
         name: "last-bought-items",

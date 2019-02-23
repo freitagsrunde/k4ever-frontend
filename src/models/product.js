@@ -9,6 +9,7 @@ export const productProps = {
     deletedAt: String,
     description: String,
     image: String,
+    showPurchaseBtn: Boolean,
 };
 
 export const productLiteral = {

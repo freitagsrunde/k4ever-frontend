@@ -1,5 +1,5 @@
 <template>
-    <div id="settings">
+    <div id="administration">
         <AddProduct/>
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
     import AddProduct from "./AddProduct";
     export default {
-        name: "Settings",
+        name: "Administration",
         components: {AddProduct}
     }
 </script>
