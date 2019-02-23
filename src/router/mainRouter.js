@@ -5,6 +5,7 @@ import store from "../store"
 import Login from '../components/Login'
 import Storefront from '../components/storefront/Storefront'
 import Administration from "../components/administration/Administration";
+import AllProducts from "../components/allProducts/AllProducts";
 
 Vue.use(Router);
 
@@ -19,6 +20,13 @@ let router = new Router({
             path: '/',
             name: 'Storefront',
             component: Storefront,
+            meta: {
+                requiresAuth: true
+            }
+        }, {
+            path: '/products',
+            name: 'AllProducts',
+            component: AllProducts,
             meta: {
                 requiresAuth: true
             }

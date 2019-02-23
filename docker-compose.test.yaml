@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  k4frontend:
+    build:
+      context: .
+      args:
+        VUE_APP_API_BASE_URL: "https://k4ever.dangernoodle.de/api/v1/"
+        VUE_APP_TITLE: "k4frontend"
+    ports:
+      - "3000:80"

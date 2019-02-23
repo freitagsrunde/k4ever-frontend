@@ -1,5 +1,6 @@
 <template>
     <div id="addProduct">
+        <h2>Add Product</h2>
         <form id="addProductForm" @submit.prevent="addProduct">
             <label for="name">Name: </label><input id="name" type="text" v-model="name" placeholder="name" required>
             <label for="price">Price: </label><input id="price" type="number" v-model="price" placeholder="price"
@@ -25,7 +26,7 @@
                 deposit: 0,
                 description: '',
                 image: '',
-            };
+            }
         },
         methods: {
             addProduct() {
@@ -38,9 +39,13 @@
                         description: this.description,
                         image: this.image,
                     })
-                    .then(res => this.$toasted.show(`Successfully added Product ${res.data.name}`))
-                    .catch(console.error)
+                    .then(res => this.$toasted.show(`Successfully added Product "${res.data.name}"`))
+                    .then(() => this.reset())
+                    .catch(err => this.$toasted.error(`Error while creating new product`))
 
+            },
+            reset() {
+                Object.assign(this.$data, this.$options.data.call(this));
             }
         }
     }
@@ -54,5 +59,9 @@
 
     #addProductForm button {
         grid-column: 1 / span 2;
+    }
+
+    .addProduct {
+        margin: 20px;
     }
 </style>

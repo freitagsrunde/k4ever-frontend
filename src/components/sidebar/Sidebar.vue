@@ -5,6 +5,7 @@
         <button v-on:click="logout">Logout</button>
         <nav>
             <router-link to="/">Home</router-link>
+            <router-link to="/products">All products</router-link>
             <router-link to="/administration">Administration</router-link>
         </nav>
     </div>
