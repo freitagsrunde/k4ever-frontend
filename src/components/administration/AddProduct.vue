@@ -39,7 +39,14 @@
                         description: this.description,
                         image: this.image,
                     })
-                    .then(res => this.$toasted.show(`Successfully added Product "${res.data.name}"`))
+                    .then(res => {
+                        if (res.status === 201)
+                            this.$toasted.show(`Successfully added Product "${res.data.name}"`);
+                        else if (res.status === 200)
+                            this.$toasted.error(`Product already exists`);
+                        else
+                            this.$toasted.error(`This should not have happened`);
+                    })
                     .then(() => this.reset())
                     .catch(err => this.$toasted.error(`Error while creating new product`))
 

@@ -4,6 +4,7 @@ import store from "../store"
 
 import Login from '../components/Login'
 import Storefront from '../components/storefront/Storefront'
+import History from '../components/history/History'
 import Administration from "../components/administration/Administration";
 import AllProducts from "../components/allProducts/AllProducts";
 
@@ -27,6 +28,13 @@ let router = new Router({
             path: '/products',
             name: 'AllProducts',
             component: AllProducts,
+            meta: {
+                requiresAuth: true
+            }
+        }, {
+            path: '/history',
+            name: 'History',
+            component: History,
             meta: {
                 requiresAuth: true
             }

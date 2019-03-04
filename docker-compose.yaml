@@ -8,3 +8,4 @@ services:
         VUE_APP_TITLE: "k4frontend"
     ports:
       - "3000:80"
+      - "3001:443"

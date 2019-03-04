@@ -27,13 +27,17 @@
 </script>
 
 <style scoped lang="scss">
-    .product span {
-        margin: 0 0 0 20px;
+    .product {
+        margin: 20px;
 
-        &:after {
-            margin: 0 20px 0 3px;
-            content: "€";
+        span {
+            margin: 0 0 0 20px;
+
+            &:after {
+                margin: 0 20px 0 3px;
+                content: "€";
+            }
+
         }
-
     }
 </style>

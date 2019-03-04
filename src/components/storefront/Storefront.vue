@@ -1,7 +1,7 @@
 <template>
     <div class="storepage">
-        <!--<pre v-text="$attrs"/>-->
-        <h1>Storefront</h1  >
+        <ProductSearch/>
+        <h1>Storefront</h1>
         <!--<last-bought-items></last-bought-items>-->
         <most-bought-items></most-bought-items>
     </div>
@@ -10,9 +10,11 @@
 <script>
     import LastBoughtItems from "./LastBoughtItems"
     import MostBoughtItems from "./MostBoughtItems";
+    import ProductSearch from "../productSearch/ProductSearch";
 
     export default {
         components: {
+            ProductSearch,
             LastBoughtItems,
             MostBoughtItems
         }

@@ -1,5 +1,6 @@
 <template>
     <div class="history">
+        <h2>Purchase History</h2>
         <Purchase v-for="purchase in purchases"
                         v-bind:key="purchase.id"
                         v-bind="purchase">
@@ -20,13 +21,17 @@
         },
         mounted() {
             const user = this.$store.state.user;
-            this.$http.get(`/users/${user}/purchases/`)
-                .then(res => this.products = res.data)
+            this.$http.get(`/users/${user.name}/purchases/`)
+                .then(res => this.purchases = res.data)
                 .catch(console.error)
         }
     }
 </script>
 
 <style scoped lang="scss">
-
+    .history {
+        .purchase:nth-child(2n+1) {
+            background: lightgray;
+        }
+    }
 </style>

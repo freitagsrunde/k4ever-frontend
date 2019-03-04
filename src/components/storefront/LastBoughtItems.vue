@@ -1,5 +1,6 @@
 <template>
     <div class="last-bought-items">
+
         <h2>Last bought Items</h2>
         <Product v-for="product in products"
                  v-bind:key="product.ID"
