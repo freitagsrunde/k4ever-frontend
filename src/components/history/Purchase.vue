@@ -24,7 +24,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .purchase {
         display: grid;
         grid-template-columns: 200px auto;

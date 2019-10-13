@@ -20,3 +20,5 @@ yarn-error.log*
 *.sln
 *.sw*
 build/
+/docker-compose.https.yaml
+/traefik/traefik.toml

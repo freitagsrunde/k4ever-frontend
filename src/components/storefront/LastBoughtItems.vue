@@ -23,10 +23,9 @@
             }
         },
         mounted() {
-            this.products = [
-                {id: 1, ean: "123", name: "Fritz Limo", price: 0.8, deposit: 0.2},
-                {id: 2, ean: "456", name: "Fritz Cola", price: 0.8, deposit: 0.2},
-                {id: 3, ean: "789", name: "Fritz Rhabarber", price: 0.9, deposit: 0.2},]
+            this.$http.get('/products/')
+                .then(res => this.products = res.data)
+                .catch(console.error)
         }
     }
 </script>

@@ -17,9 +17,7 @@
             buyProduct() {
                 this.$http.post(`/products/${this.id}/buy/`, {amount: 1})
                     .then(() => this.$toasted.info("purchase successful"))
-                    .then(() => {
-                        return this.$store.dispatch('updateUser')
-                    })
+                    .then(() => this.$store.dispatch('updateUser'))
                     .catch(() => this.$toasted)
             }
         }

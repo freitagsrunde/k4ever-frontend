@@ -33,7 +33,7 @@
                     })
                     .then(res => this.$toasted.show(`Successfully added User "${res.data.display_name}"`))
                     .then(() => this.reset())
-                    .catch(res => this.$toasted.error(`Error while creating new User`))
+                    .catch(res => this.$toasted.error(`Error while creating new User: ${res}`))
 
             },
             reset() {

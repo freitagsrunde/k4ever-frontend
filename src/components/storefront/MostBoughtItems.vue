@@ -13,6 +13,7 @@
 
     export default {
         name: "most-bought-items",
+        props: ['limit'],
         components: {
             Product
         },
@@ -22,7 +23,7 @@
             }
         },
         mounted() {
-            this.$http.get('/products/')
+            this.$http.get(`/products/?sort_by=times_bought&order=desc`)
                 .then(res => this.products = res.data)
                 .catch(console.error)
         }
