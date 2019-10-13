@@ -2,21 +2,22 @@
     <div class="storepage">
         <ProductSearch/>
         <h1>Storefront</h1>
-        <!--<last-bought-items></last-bought-items>-->
-        <most-bought-items></most-bought-items>
+        <div class="most-bought-items">
+            <h2>Most bought Items</h2>
+            <ProductList :limit="5" :sort_by="times_bought" :order="desc"></ProductList>
+        </div>
     </div>
 </template>
 
 <script>
-    import LastBoughtItems from "./LastBoughtItems"
-    import MostBoughtItems from "./MostBoughtItems";
     import ProductSearch from "../productSearch/ProductSearch";
+    import ProductList from "../allProducts/ProductList";
 
     export default {
         components: {
+            ProductList,
             ProductSearch,
-            LastBoughtItems,
-            MostBoughtItems
+
         }
     };
 </script>

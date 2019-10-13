@@ -9,7 +9,7 @@
     </div>
 </template>
 
-<script>
+<script> //TODO integrate ProductList into this component
     import Product from "../general/Product";
 
     export default {

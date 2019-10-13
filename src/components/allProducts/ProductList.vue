@@ -1,7 +1,5 @@
 <template>
-    <div class="most-bought-items">
-        <!--<pre v-text="$attrs"/>-->
-        <h2>Most bought Items</h2>
+    <div class="productList">
         <Product v-for="product in products"
                  v-bind:key="product.id"
                  v-bind="product" showPurchaseBtn></Product>
@@ -9,11 +7,11 @@
 </template>
 
 <script>
-    import Product from "../general/Product"
+    import Product from '../general/Product'
 
     export default {
-        name: "most-bought-items",
-        props: ['limit'],
+        name: "ProductList",
+        props: ['limit', 'sort_by', 'order', 'offset'],
         components: {
             Product
         },
@@ -23,14 +21,13 @@
             }
         },
         mounted() {
-            this.$http.get(`/products/?sort_by=times_bought&order=desc`)
+            this.$http.get(`/products/?sort_by=${this.sort_by || "name"}&order=${this.order || "asc"}&limit=${this.limit || 99999}&offset=${this.offset || 0}`)
                 .then(res => this.products = res.data)
                 .catch(console.error)
         }
     };
 </script>
 
-
-<style scoped lang="scss">
+<style scoped>
 
 </style>
