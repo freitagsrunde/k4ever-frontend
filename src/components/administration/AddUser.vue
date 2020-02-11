@@ -1,16 +1,22 @@
 <template>
-    <div class="addUser">
-        <h2>Add User</h2>
-        <form id="addUserForm" @submit.prevent="addUser">
-            <label for="username">Name: </label><input id="username" type="text" v-model="username"
-                                                       placeholder="Username" required>
-            <label for="displayname">Display Name: </label><input id="displayname" type="text" v-model="display_name"
-                                                          placeholder="Displayed Name">
-            <label for="password">Password: </label><input id="password" type="password" v-model="password"
-                                                       placeholder="Password" required>
-            <button type="submit">Add User</button>
-        </form>
-    </div>
+    <v-content>
+        <v-container>
+            <v-row>
+                <v-col class="display-1 font-weight-medium text-center">Add user</v-col>
+            </v-row>
+            <v-row>
+                <v-form @submit.prevent="addUser" id="au-form" class="pl-4 pr-4 pt-4">
+                    <v-text-field label="Username" name="username" type="text" prepend-icon="person"
+                                  v-model="username"/>
+                    <v-text-field label="Displayed Name" name="displayname" type="text" prepend-icon="person"
+                                  v-model="display_name"/>
+                    <v-text-field id="password" label="Password" name="password" prepend-icon="lock"
+                                  type="password" v-model="password"/>
+                </v-form>
+                <v-btn color="primary" type="submit" form="ap-form">Add User</v-btn>
+            </v-row>
+        </v-container>
+    </v-content>
 </template>
 
 <script>

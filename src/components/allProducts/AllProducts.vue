@@ -1,8 +1,14 @@
 <template>
-    <div class="all-products">
-        <h2>All Products</h2>
-        <ProductList/>
-    </div>
+    <v-content>
+        <v-container>
+            <v-row>
+                <v-col class="display-2 font-weight-medium">All Products</v-col>
+            </v-row>
+            <v-row>
+                <ProductList cols="3"/>
+            </v-row>
+        </v-container>
+    </v-content>
 </template>
 
 <script>
@@ -19,14 +25,5 @@
 </script>
 
 <style scoped lang="scss">
-    .productList {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        max-width: 1000px;
-    }
-
-    h2 {
-        grid-column: 1 / span 3;
-    }
 
 </style>

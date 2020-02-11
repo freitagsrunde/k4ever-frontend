@@ -1,17 +1,22 @@
 <template>
-    <div id="app">
-        <Sidebar v-if="this.$store.getters.isLoggedIn"/>
+    <v-app id="inspire">
+        <Sidebar v-if="this.$store.getters.isLoggedIn" ref="drawer"/>
+        <Titlebar @toggle-drawer="$refs.drawer.drawer = !$refs.drawer.drawer" v-if="this.$store.getters.isLoggedIn"/>
         <router-view/>
-    </div>
+    </v-app>
 </template>
 
 <script>
 
     import Sidebar from "./components/sidebar/Sidebar";
+    import Titlebar from "./components/sidebar/Titlebar";
 
     export default {
         name: 'app',
-        components: {Sidebar},
+        components: {Titlebar, Sidebar},
+        props: {
+            source: String,
+        },
         computed: {
             isLoggedIn: function () {
                 return this.$store.getters.isLoggedIn()

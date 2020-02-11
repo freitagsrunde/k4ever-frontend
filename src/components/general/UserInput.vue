@@ -1,12 +1,5 @@
 <template>
-    <div class="userInput">
-        <input type="text" name="foreign-username" placeholder="username" v-model="selectedUser" list="usernames" step="0.01"
-               required>
-        <datalist id="usernames">
-            <option v-for="u in users"
-                    :key="u">{{ u }}</option>
-        </datalist>
-    </div>
+    <v-autocomplete :items="users" v-model="selectedUser" prepend-icon="person" label="Username"/>
 </template>
 
 <script>

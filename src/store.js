@@ -9,12 +9,13 @@ export default new Vuex.Store({
     state: {
         status: '',
         token: localStorage.getItem('token') || '',
-        user: {}
+        user: {},
     },
     getters: {
         isLoggedIn: (state) => !!state.token,
         authStatus: (state) => state.status,
-        getUser: (state) => state.user
+        getUser: (state) => state.user,
+        isAdmin: (state) => state.user.role >= 3,
     },
     mutations: {
         auth_request(state) {
@@ -26,7 +27,7 @@ export default new Vuex.Store({
             const base64 = token.split('.')[1]
                 .replace('-', '+').replace('_', '/');
             const user = JSON.parse(window.atob(base64));
-            state.user = {name: user.name, display_name: user.name, balance: 0};
+            state.user = {name: user.name, display_name: user.name, balance: 0, role: 0};
         },
         auth_error(state) {
             state.status = 'error';
@@ -37,7 +38,7 @@ export default new Vuex.Store({
         },
         update_user(state, user) {
             state.user = user;
-        }
+        },
     },
     actions: {
         login({commit}, user) {
@@ -84,6 +85,6 @@ export default new Vuex.Store({
                         .catch(reject)
                 }
             })
-        }
+        },
     }
 });

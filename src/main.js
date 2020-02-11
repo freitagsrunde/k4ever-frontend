@@ -4,6 +4,9 @@ import router from './router/mainRouter'
 import Axios from 'axios'
 import Toasted from 'vue-toasted'
 import store from './store'
+import VueSelect from 'vue-select'
+import vuetify from '@/plugins/vuetify';
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.config.productionTip = false;
 Vue.prototype.$http = Axios;
@@ -21,9 +24,13 @@ Vue.use(Toasted, {
   duration: 3000
 });
 
+Vue.component('v-select', VueSelect);
+
+
 new Vue({
   render: h => h(App),
   router,
-  store,
+  vuetify,
+  store
 }).$mount('#app');
 

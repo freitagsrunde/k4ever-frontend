@@ -1,4 +1,17 @@
 module.exports = {
   lintOnSave: false,
-  publicPath: '/',
-};
+  publicPath: "/",
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: '@import "vue-select/src/scss/vue-select.scss"',
+      },
+      scss: {
+        prependData: '@import "vue-select/src/scss/vue-select.scss";',
+      },
+    }
+  },
+  transpileDependencies: [
+    "vuetify"
+  ],
+}

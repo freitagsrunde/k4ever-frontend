@@ -22,28 +22,32 @@ let router = new Router({
             name: 'Storefront',
             component: Storefront,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                requiresAdmin: false
             }
         }, {
             path: '/products',
             name: 'AllProducts',
             component: AllProducts,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                requiresAdmin: false
             }
         }, {
             path: '/history',
             name: 'History',
             component: History,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                requiresAdmin: false
             }
         }, {
             path: '/administration',
             name: 'Administration',
             component: Administration,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                requiresAdmin: true
             }
         }
 
@@ -57,6 +61,12 @@ router.beforeEach((to, from, next) => {
             return;
         }
         next('/login');
+    } else if (to.matched.some(record => record.meta.requiresAdmin)) {
+        if (store.getters.isAdmin) {
+            next();
+            return;
+        }
+        next('/');
     } else {
         next();
     }
