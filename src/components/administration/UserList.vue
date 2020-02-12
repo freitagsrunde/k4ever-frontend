@@ -1,13 +1,16 @@
 <template>
-    <!--    <div class="userList">-->
-    <!--        <User v-for="user in users"-->
-    <!--              :key="user.id"-->
-    <!--              v-bind="user"/>-->
-    <!--    </div>-->
     <v-content>
         <v-container>
             <v-row>
                 <v-data-table :headers="header" :items="users" :items-per-page="10" item-key="id">
+                    <template v-slot:top>
+                        <v-toolbar flat color="white">
+                            <v-toolbar-title>Users</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                            <AddUser ref="userForm" @push-user="pushUser"/>
+                        </v-toolbar>
+                    </template>
+
                     <template v-slot:item.action="{ item }">
                         <v-icon small class="mr-2" @click="editUser(item)">
                             edit
@@ -23,11 +26,11 @@
 </template>
 
 <script>
-    import User from "./User";
+    import AddUser from "./AddUser";
 
     export default {
         name: "UserList",
-        components: {User},
+        components: {AddUser},
         data: () => {
             return {
                 users: [],
@@ -66,8 +69,12 @@
                 .catch(console.error)
         },
         methods: {
-            editUser() {
-
+            editUser(user) {
+                this.$refs.userForm.overlay = true;
+                this.$refs.userForm.initWithUser(user.name);
+            },
+            pushUser(user) {
+                this.users.push(user)
             }
         }
     }

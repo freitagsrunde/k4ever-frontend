@@ -7,7 +7,7 @@
                         <v-toolbar flat color="white">
                             <v-toolbar-title>Products</v-toolbar-title>
                             <v-spacer></v-spacer>
-                            <AddProduct ref="productForm" @refreshProducts="refreshProducts"/>
+                            <AddProduct ref="productForm" @push-product="pushProduct"/>
                         </v-toolbar>
                     </template>
 
@@ -27,6 +27,7 @@
 
 <script>
     import AddProduct from "./AddProduct";
+
     export default {
         name: "ProductManager",
         components: {AddProduct},
@@ -42,27 +43,27 @@
                         text: 'Name',
                         value: 'name',
                         sortable: true
-                    },{
+                    }, {
                         text: 'Price',
                         value: 'price',
                         sortable: true
-                    },{
+                    }, {
                         text: 'Deposit',
                         value: 'deposit',
                         sortable: true
-                    },{
+                    }, {
                         text: 'EAN',
                         value: 'barcode',
                         sortable: true
-                    },{
+                    }, {
                         text: 'disabled',
-                        value: 'id',
+                        value: 'disabled',
                         sortable: false
-                    },{
+                    }, {
                         text: 'Times bought',
                         value: 'times_bought_total',
                         sortable: true
-                    },{
+                    }, {
                         text: 'Description',
                         value: 'description',
                         sortable: false
@@ -75,24 +76,18 @@
             }
         },
         created() {
-            this.initProducts()
+            this.$http.get(`/products/`)
+                .then(res => this.products = res.data)
+                .catch(console.error)
         },
         methods: {
             editProduct(item) {
                 this.$refs.productForm.overlay = true;
                 this.$refs.productForm.initWithProduct(item.id);
             },
-            initProducts() {
-                this.$http.get(`/products/`)
-                    .then(res => this.products = res.data)
-                    .catch(console.error)
+            pushProduct(product) {
+                this.products.push(product)
             },
-            refreshProducts() {
-                this.initProducts()
-            }
-        },
-        events: {
-
         }
     }
 </script>

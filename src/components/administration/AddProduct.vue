@@ -11,7 +11,7 @@
                     <v-icon>close</v-icon>
                 </v-btn>
             </v-toolbar>
-            <v-form @submit.prevent="addProduct" id="ap-form" class="pl-4 pr-4 pt-4">
+            <v-form @submit.prevent="processProduct" id="ap-form" class="pl-4 pr-4 pt-4">
                 <v-text-field label="EAN" name="ean" type="text" v-model="ean"/>
                 <v-text-field label="Product Name" name="productName" type="text" v-model="productName"/>
                 <v-text-field label="Price" name="price" prepend-icon="euro" type="number" step="0.01"
@@ -43,18 +43,9 @@
             overlay: false,
             title: 'Add Product'
         }),
-        mounted() {
-            this.ean = '';
-            this.productName = '';
-            this.price = 0;
-            this.deposit = 0;
-            this.description = '';
-        },
         methods: {
             initWithProduct(initId) {
                 if (initId) {
-                    this.title = "Edit Product";
-
                     this.$http.get(`/products/${initId}/`)
                         .then(res => {
                             this.ean = res.data.barcode;
@@ -62,9 +53,18 @@
                             this.price = res.data.price;
                             this.deposit = res.data.deposit;
                             this.description = res.data.description;
+
+                            this.title = "Edit Product";
                         })
                         .catch(() => this.$toasted.error(`Unable to load Product with Id ${initId}`))
+
                 }
+            },
+            processProduct() {
+                if (this.title === 'Edit Product')
+                    this.editProduct()
+                else
+                    this.addProduct()
             },
             addProduct() {
                 this.$http.post(
@@ -77,17 +77,18 @@
                         image: this.image,
                     })
                     .then(res => {
-                        if (res.status === 201)
+                        if (res.status === 201) {
                             this.$toasted.show(`Successfully added Product "${res.data.name}"`);
-                        else if (res.status === 200)
+                            this.$emit("push-product", res.data);
+                        } else if (res.status === 200)
                             this.$toasted.error(`Product already exists`);
                         else
                             this.$toasted.error(`This should not have happened`);
                     })
                     .then(() => this.reset())
                     .catch(err => this.$toasted.error(`Error while creating new product`))
-
-                this.$emit("refreshProducts")
+            },
+            editProduct() {
 
             },
             reset() {
@@ -104,30 +105,20 @@
             }
         },
         watch: {
-            overlay() {
-                this.ean = '';
-                this.productName = '';
-                this.price = 0;
-                this.deposit = 0;
-                this.description = '';
+            overlay(oldVal, newVal) {
+                if (newVal === false) {
+                    this.ean = '';
+                    this.productName = '';
+                    this.price = 0;
+                    this.deposit = 0;
+                    this.description = '';
 
-                this.title = "Add Product";
+                    this.title = "Add Product";
+                }
             }
         }
     }
 </script>
 
 <style scoped>
-    #addProductForm {
-        display: grid;
-        grid-template-columns: 200px auto;
-    }
-
-    #addProductForm button {
-        grid-column: 1 / span 2;
-    }
-
-    .addProduct {
-        margin: 20px;
-    }
 </style>
