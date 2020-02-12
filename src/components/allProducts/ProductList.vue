@@ -1,11 +1,16 @@
 <template>
     <v-container class="my-5 grid-list-xl" fluid>
-        <v-layout row wrap>
-            <v-flex :class="cols === '1' ? 'md12' : 'xs12 sm6 md4'" v-for="product in products"
-                    v-bind:key="product.id">
-                <Product v-bind="product" showPurchaseBtn/>
-            </v-flex>
-        </v-layout>
+        <!--        <v-layout row wrap>-->
+        <!--            <v-flex v-for="product in products" class="mx-auto"-->
+        <!--                    v-bind:key="product.id">-->
+        <!--                <Product v-bind="product" showPurchaseBtn/>-->
+        <!--            </v-flex>-->
+        <!--        </v-layout>-->
+        <v-row justify-sm="center" :justify-md="cols === '1' ? 'center' : 'start'" >
+            <v-col cols="auto" v-for="product in products" v-bind:key="product.id">
+                    <Product v-bind="product" showPurchaseBtn/>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 

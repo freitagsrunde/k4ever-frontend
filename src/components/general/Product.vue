@@ -1,5 +1,5 @@
 <template>
-    <v-card class="mx-auto" max-width="344">
+    <v-card class="mx-auto" width="344">
         <v-list-item three-line>
             <v-list-item-content>
                 <div class="overline mb-3">Category</div>
@@ -7,15 +7,23 @@
                     {{ name }}
                 </v-list-item-title>
                 <v-list-item-subtitle>
-                    <span v-if="price" class="price">{{ price.toFixed(2) }}</span>
-                    <span v-if="deposit" class="price">{{ deposit.toFixed(2) }}</span>
+                    <div>Price: <span v-if="price" class="price">{{ price.toFixed(2) }}</span></div>
+                    <div v-show="deposit > 0">With Deposit: <span v-if="deposit" class="price">{{ (price + deposit).toFixed(2) }}</span>
+                    </div>
                 </v-list-item-subtitle>
-                <v-card-actions v-if="showPurchaseBtn">
-                    <v-btn text @click="buyProduct">Purchase</v-btn>
-                    <v-btn text disabled>With Deposit</v-btn>
-                </v-card-actions>
             </v-list-item-content>
+
+            <v-list-item-avatar
+                    tile
+                    size="80"
+                    color="grey"
+            ></v-list-item-avatar>
         </v-list-item>
+
+        <v-card-actions v-if="showPurchaseBtn">
+            <v-btn text @click="buyProduct">Purchase</v-btn>
+            <v-btn text disabled v-show="deposit > 0">With Deposit</v-btn>
+        </v-card-actions>
     </v-card>
 </template>
 

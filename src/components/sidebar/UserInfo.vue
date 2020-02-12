@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    import TransferFunds from "../unspecified/TransferFunds";
+    import TransferFunds from "./TransferFunds";
     import IncreaseFunds from "./IncreaseBalance";
 
     export default {

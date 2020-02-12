@@ -4,7 +4,7 @@
             <v-row>
                 <v-col class="display-2 font-weight-medium">All Products</v-col>
             </v-row>
-            <v-row>
+            <v-row align="center" justify="center">
                 <ProductList cols="3"/>
             </v-row>
         </v-container>

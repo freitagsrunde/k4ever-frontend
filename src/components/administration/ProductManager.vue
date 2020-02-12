@@ -1,28 +1,27 @@
 <template>
-    <v-content>
-        <v-container>
-            <v-row>
-                <v-data-table :headers="header" :items="products" :items-per-page="10" item-key="id">
-                    <template v-slot:top>
-                        <v-toolbar flat color="white">
-                            <v-toolbar-title>Products</v-toolbar-title>
-                            <v-spacer></v-spacer>
-                            <AddProduct ref="productForm" @push-product="pushProduct"/>
-                        </v-toolbar>
-                    </template>
+    <v-container>
+        <v-row>
+            <v-data-table :headers="header" :items="products" :search="search" :items-per-page="10" item-key="id">
+                <template v-slot:top>
+                    <v-toolbar flat color="white">
+                        <v-toolbar-title>Products</v-toolbar-title>
+                        <AddProduct ref="productForm" @push-product="pushProduct"/>
+                        <v-spacer></v-spacer>
+                        <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details/>
+                    </v-toolbar>
+                </template>
 
-                    <template v-slot:item.action="{ item }">
-                        <v-icon small class="mr-2" @click="editProduct(item)">
-                            edit
-                        </v-icon>
-                        <v-icon small @click="deleteProduct(item)" disabled>
-                            delete
-                        </v-icon>
-                    </template>
-                </v-data-table>
-            </v-row>
-        </v-container>
-    </v-content>
+                <template v-slot:item.action="{ item }">
+                    <v-icon small class="mr-2" @click="editProduct(item)">
+                        edit
+                    </v-icon>
+                    <v-icon small @click="deleteProduct(item)" disabled>
+                        delete
+                    </v-icon>
+                </template>
+            </v-data-table>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
@@ -33,6 +32,7 @@
         components: {AddProduct},
         data: () => {
             return {
+                search: '',
                 products: [],
                 header: [
                     {

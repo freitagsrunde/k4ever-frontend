@@ -1,7 +1,9 @@
 <template>
     <v-dialog v-model="overlay" max-width="500">
         <template v-slot:activator="{ on }">
-            <v-btn v-on="on">Add Product</v-btn>
+            <v-btn v-on="on" icon>
+                <v-icon>add_box</v-icon>
+            </v-btn>
         </template>
         <v-card>
             <v-toolbar color="primary" dark flat>
